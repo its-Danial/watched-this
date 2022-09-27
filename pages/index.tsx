@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import Banner from "../components/Banner/Banner";
+import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
+import HomeContentCard from "../components/UI/Cards/HomeContentCard";
 
 const Home: NextPage = () => {
   const [popularTogglePick, setPopularTogglePick] = useState<string>();
@@ -23,12 +25,9 @@ const Home: NextPage = () => {
           sectionTitle="What's Popular"
           optionTitles={["On TV", "Streaming", "In Theaters"]}
           onToggleSelect={onPopularToggleHandler}
-        />
-        <Section
-          sectionTitle="What's Popular"
-          optionTitles={["Movies", "TV"]}
-          onToggleSelect={onTrendingToggleHandler}
-        />
+        >
+          <ContentList />
+        </Section>
       </MainContainer>
     </main>
   );
