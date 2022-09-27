@@ -41,8 +41,3 @@ html {
   will-change: opacity;
   pointer-events: none;
 }
-
-/* .is_fading::after {
-  transition: linear 0.3s;
-  opacity: 1;
-} */

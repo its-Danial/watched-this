@@ -8,8 +8,8 @@ const Banner: FC<BannerProps> = (props) => {
     <div className="min-h-[300px] h-[calc(100vh/2.5)] max-h-[360px] bg-banner bg-cover bg-no-repeat py-5 flex justify-center items-center content-center">
       <div className="w-full flex flex-col gap-10 p-10">
         <div className="">
-          <h2 className="text-gray-50 font-bold text-5xl">Welcome.</h2>
-          <h3 className="text-gray-100 font-medium text-[1.8rem] leading-1">
+          <h2 className="text-gray-50 font-extrabold text-5xl">Welcome.</h2>
+          <h3 className="text-gray-100 font-semibold text-3xl leading-1">
             Millions of movies, TV shows and people to discover. Explore now.
           </h3>
         </div>
