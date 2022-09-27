@@ -4,15 +4,12 @@ import Switch from "../../UI/Buttons/Switch";
 type SectionProps = {
   sectionTitle: string;
   optionTitles: string[];
+  onToggleSelect: (pickedOptionTitle: string) => void;
 };
 
 const Section: FC<SectionProps> = (props) => {
-  const [selectedOptionTitle, setSelectedOptionTitle] = useState(props.optionTitles[0]);
-
   const onToggleSelectorHandler = (pickedOptionTitle: string) => {
-    setSelectedOptionTitle(pickedOptionTitle);
-
-    console.log(selectedOptionTitle);
+    props.onToggleSelect(pickedOptionTitle);
   };
   return (
     <section className="mt-[30px] px-10">

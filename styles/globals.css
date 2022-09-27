@@ -15,6 +15,6 @@ html {
 
 @layer components {
   .switch-active-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#c0fecf] to-[#1ed5a9];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#c0fecf] to-[#1ed5a9] transition-all duration-200 ease-in;
   }
 }
