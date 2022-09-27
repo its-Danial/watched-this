@@ -8,7 +8,10 @@ const Home: NextPage = () => {
     <main className="mt-16 bg-white min-h-screen">
       <MainContainer>
         <Banner />
-        <Section title="What's Popular" optionTitles={["Streaming", "On TV", "In Theaters"]} />
+        <Section
+          sectionTitle="What's Popular"
+          optionTitles={["Streaming", "On TV", "In Theaters n Theatersn Theaters", "Home", "Netflix"]}
+        />
       </MainContainer>
     </main>
   );
