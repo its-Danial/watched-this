@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { FC } from "react";
 import { FaSearch } from "react-icons/fa";
-import logo from "../../public/images/logo-no-background.svg";
+import logo from "../../../public/images/logo-no-background.svg";
 
 type NavBarProps = {};
 
 const NavBar: FC<NavBarProps> = (props) => {
   return (
-    <nav className="bg-white h-16 dark:bg-slate-900 px-36 py-2 flex items-center">
+    <nav className="fixed top-0 left-0 w-full bg-white h-16 dark:bg-tmdbDarkBlue px-36 py-2 flex items-center shadow">
       <div className="my-auto flex-1 flex flex-row justify-between dark:text-gray-100 text-gray-800 items-center">
         <div className="flex flex-row justify-between items-center">
           <Image src={logo} height={35} width={150} />
