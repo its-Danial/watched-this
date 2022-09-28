@@ -1,6 +1,5 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Switch from "../../UI/Buttons/Switch";
-import HomeContentCard from "../../UI/Cards/HomeContentCard";
 
 type SectionProps = {
   sectionTitle: string;
@@ -18,6 +17,7 @@ const Section: FC<SectionProps> = (props) => {
       <div className="flex items-center gap-5 px-10">
         <h2 className="text-gray-700 font-semibold text-2xl">{props.sectionTitle}</h2>
         <Switch optionTitles={props.optionTitles} onToggle={onToggleSelectorHandler} />
+        {/* <DropDownMenu /> */}
       </div>
       {props.children}
     </section>
