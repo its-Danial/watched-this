@@ -1,65 +1,10 @@
 import React, { FC, useEffect, useRef, useState } from "react";
+import { TV_Show } from "../../types";
 import HomeContentCard from "../UI/Cards/HomeContentCard";
 
-type ContentListProps = {};
-
-const dummydata = [
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-  {
-    title: "the boys",
-    imageUrl: "https://www.themoviedb.org/t/p/w440_and_h660_face/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
-    date: "03 Oct 2020",
-  },
-];
+type ContentListProps = {
+  contentList: TV_Show[];
+};
 
 const ContentList: FC<ContentListProps> = (props) => {
   const fadingEleRef = useRef<HTMLDivElement>(null);
@@ -79,8 +24,13 @@ const ContentList: FC<ContentListProps> = (props) => {
   return (
     <div className="relative">
       <div onScroll={onScrollHandler} className="flex pb-14 p-5 overflow-x-auto scroll-smooth">
-        {dummydata.map((item, index) => (
-          <HomeContentCard key={index} {...item} />
+        {props.contentList?.map((item, index) => (
+          <HomeContentCard
+            key={index}
+            first_air_date={item.first_air_date}
+            poster_path={item.poster_path}
+            name={item.name}
+          />
         ))}
       </div>
       <div
