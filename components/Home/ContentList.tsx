@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { Movie, TV_Show } from "../../types";
 import HomeContentCard from "../UI/Cards/HomeContentCard";
 
 type ContentListProps = {
-  contentList: Movie[] | TV_Show[];
+  listContent: TV_Show[] | Movie[];
 };
 
 const ContentList: FC<ContentListProps> = (props) => {
@@ -24,7 +24,7 @@ const ContentList: FC<ContentListProps> = (props) => {
   return (
     <div className="relative">
       <div onScroll={onScrollHandler} className="flex pb-14 p-5 overflow-x-auto scroll-smooth">
-        {props.contentList?.map((item, index) => (
+        {props.listContent.map((item, index) => (
           <HomeContentCard key={index} contentItem={item} />
         ))}
       </div>

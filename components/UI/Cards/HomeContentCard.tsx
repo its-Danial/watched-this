@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Movie, TV_Show } from "../../../types";
 
 type HomeContentCardProps = {
-  contentItem: TV_Show & Movie;
+  contentItem: Movie | TV_Show;
 };
 
 const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem }) => {

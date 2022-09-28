@@ -1,97 +1,59 @@
-import { createRef, FC, RefObject, useEffect, useState } from "react";
-import useIsomorphicLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
+import { FC, useEffect, useRef, useState } from "react";
 
 type SwitchProps = {
-  optionTitles: string[];
-  onToggle: (pickedOptionTitle: string) => void;
-};
-
-type Selector = {
+  optionItems: string[];
+  onToggleSelect: (pickedOptionTitle: string) => void;
   isToggled: boolean;
-  optionTitle: string;
-  width: number | undefined;
-  offsetLeft: number | undefined;
 };
 
 const Switch: FC<SwitchProps> = (props) => {
-  const [selectors, setSelectors] = useState<Selector[]>([]);
-  const [refHaveRendered, setRefHaveRendered] = useState(false);
-  const [renderSelectedBackground, setRenderSelectedBackground] = useState(false);
-  const selectorItemRef: RefObject<HTMLDivElement>[] = props.optionTitles.map(() => createRef());
-
-  useIsomorphicLayoutEffect(() => {
-    // Note: this will fix the extra options showing on the switch
-    if (selectors.length >= props.optionTitles.length) {
-      return;
-    }
-    props.optionTitles.map((optionName, index) => {
-      setSelectors((prevState) => [
-        ...prevState,
-        {
-          isToggled: index === 0 ? true : false,
-          optionTitle: optionName,
-          width: selectorItemRef[index].current?.offsetWidth,
-          offsetLeft: selectorItemRef[index].current?.offsetLeft,
-        },
-      ]);
-    });
-  }, [selectorItemRef]);
+  const [item1Width, setItem1Width] = useState<number>();
+  const [item2Width, setItem2Width] = useState<number>();
+  const item1Ref = useRef<HTMLDivElement>(null);
+  const item2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let data = selectors;
-    data.forEach((selector, index) => {
-      selector.width = selectorItemRef[index].current?.offsetWidth;
-      selector.offsetLeft = selectorItemRef[index].current?.offsetLeft;
-    });
-    setSelectors(data);
+    setItem1Width(item1Ref.current?.offsetWidth);
+    setItem2Width(item2Ref.current?.offsetWidth);
+  }, []);
 
-    if (selectors.length > 0) {
-      setRenderSelectedBackground(true);
-    }
-  }, [refHaveRendered, selectors]);
-
-  const handlerToggleClick = (sectorIndex: number) => {
-    let data = selectors;
-    data.forEach((selector) => {
-      selector.isToggled = false;
-    });
-
-    data[sectorIndex].isToggled = true;
-
-    props.onToggle(data[sectorIndex].optionTitle);
-
-    setSelectors(data);
+  const handlerToggleClick = (toggledItem: string) => {
+    props.onToggleSelect(toggledItem);
   };
 
   return (
     <>
       <div className="relative z-[1] h-8 border border-solid border-tmdbDarkBlue rounded-[30px] font-medium flex items-center">
-        {selectors.map((sector, index) => (
-          <div
-            key={index}
-            ref={selectorItemRef[index]}
-            className={`py-1 px-5 h-8 text-sm font-semibold flex items-center  ${
-              sector.isToggled && "switch-active-text"
-            }`}
-          >
-            <span className="cursor-pointer" onClick={() => handlerToggleClick(index)}>
-              {sector.optionTitle}
-            </span>
-          </div>
-        ))}
+        <div
+          ref={item1Ref}
+          className={`py-1 px-5 h-8 text-sm font-semibold flex items-center  ${
+            !props.isToggled && "switch-active-text"
+          }`}
+        >
+          <span className="cursor-pointer" onClick={handlerToggleClick.bind(null, props.optionItems[0])}>
+            {props.optionItems[0]}
+          </span>
+        </div>
+        <div
+          ref={item2Ref}
+          className={`py-1 px-5 h-8 text-sm font-semibold flex items-center  ${
+            props.isToggled && "switch-active-text"
+          }`}
+        >
+          <span className="cursor-pointer" onClick={() => handlerToggleClick(props.optionItems[1])}>
+            {props.optionItems[1]}
+          </span>
+        </div>
 
-        {renderSelectedBackground && (
-          <div
-            className={`absolute z-[-1] h-8 bg-tmdbDarkBlue rounded-[30px] transition-all duration-200 ease-in`}
-            style={{
-              width: selectors.find((sector) => sector.isToggled)?.width,
-              left: selectors.find((sector) => sector.isToggled)?.offsetLeft,
-            }}
-          ></div>
-        )}
+        <div
+          className={`absolute z-[-1] h-8 bg-tmdbDarkBlue rounded-[30px] transition-all duration-200 ease-in`}
+          style={
+            props.isToggled
+              ? { left: `${Number(item1Width)}px`, width: `${Number(item2Width) + 2}px` }
+              : { left: 0, width: `${Number(item1Width) + 2}px` }
+          }
+        ></div>
       </div>
-
-      {!refHaveRendered && setRefHaveRendered(true)}
     </>
   );
 };

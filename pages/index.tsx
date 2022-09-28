@@ -5,23 +5,14 @@ import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
-import { PopularResult } from "../types";
+import { Movie, PopularResult, TV_Show } from "../types";
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const [popularContent, setPopularContent] = useState(props.popularContent.popularTvShows.results);
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
+  const [listContent, setListContent] = useState<TV_Show[] | Movie[]>();
 
-  const onPopularToggleHandler = (pickedOptionTitle: string) => {
-    // setPopularTogglePick(pickedOptionTitle);
-    if (pickedOptionTitle === "On TV") {
-      setPopularContent(props.popularContent.popularTvShows.results);
-    } else {
-      setPopularContent(props.popularContent.popularMovies.results);
-    }
-    // console.log(pickedOptionTitle);
-  };
-  const onTrendingToggleHandler = (pickedOptionTitle: string) => {
-    console.log(pickedOptionTitle);
+  const onSectionToggleHandler = (sectionName: string, selectedOption: string) => {
+    setSectionToggle((prevState) => ({ ...prevState, [sectionName]: selectedOption }));
   };
 
   return (
@@ -30,13 +21,32 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) =
         <Banner />
         <Section
           sectionTitle="What's Popular"
-          optionTitles={["On TV", "Movies"]}
-          onToggleSelect={onPopularToggleHandler}
+          optionItems={["On TV", "Movies"]}
+          onToggleSelect={onSectionToggleHandler.bind(null, "popular")}
+          isToggled={sectionToggle.popular === "On TV" ? false : true}
         >
-          <ContentList contentList={popularContent} />
+          <ContentList
+            listContent={
+              sectionToggle.popular === "On TV"
+                ? props.popularContent.popularTvShows.results
+                : props.popularContent.popularMovies.results
+            }
+          />
         </Section>
-        <Section sectionTitle="Trending" optionTitles={["Today", "This Week"]} onToggleSelect={onTrendingToggleHandler}>
-          <ContentList contentList={props.popularContent.popularMovies.results} />
+        {/* Note Trending Section */}
+        <Section
+          sectionTitle="Trending"
+          optionItems={["Today", "This Week"]}
+          onToggleSelect={onSectionToggleHandler.bind(null, "trending")}
+          isToggled={sectionToggle.trending === "Today" ? false : true}
+        >
+          <ContentList
+            listContent={
+              sectionToggle.popular === "Today"
+                ? props.popularContent.popularTvShows.results
+                : props.popularContent.popularMovies.results
+            }
+          />
         </Section>
       </MainContainer>
     </main>
