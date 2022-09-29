@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC } from "react";
 import Switch from "../../UI/Buttons/Switch";
 
@@ -11,7 +12,7 @@ type SectionProps = {
 
 const Section: FC<SectionProps> = (props) => {
   return (
-    <section className="mt-[30px] relative">
+    <section className={`mt-[30px] relative ${props.sectionTitle === "Trending" && "trending-section-bg"}`}>
       <div className="flex items-center gap-5 px-10">
         <h2 className="text-gray-700 font-semibold text-2xl">{props.sectionTitle}</h2>
         <Switch {...props} />
