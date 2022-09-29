@@ -11,9 +11,7 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem }) => {
     <div className="flex flex-col gap-2 pl-5 ">
       {/* <div className="w-[15px] h-[225px] shadow-sm rounded-lg overflow-hidden"> */}
       <img
-        src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${
-          contentItem.poster_path || contentItem.backdrop_path
-        }`}
+        src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
         alt=""
         // height={225}
         // width={150}

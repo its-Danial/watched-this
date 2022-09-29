@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import { Movie, TV_Show } from "../../types";
+import Blur from "../UI/Blur/Blur";
 import HomeContentCard from "../UI/Cards/HomeContentCard";
 
 type ContentListProps = {
@@ -7,7 +8,7 @@ type ContentListProps = {
 };
 
 const ContentList: FC<ContentListProps> = (props) => {
-  const fadingEleRef = useRef<HTMLDivElement>(null);
+  const fadingElRef = useRef<HTMLDivElement>(null);
   const [fade, setFade] = useState<number>();
 
   const onScrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
@@ -22,17 +23,17 @@ const ContentList: FC<ContentListProps> = (props) => {
   };
 
   return (
-    <div className="relative">
-      <div onScroll={onScrollHandler} className="flex pb-14 p-5 overflow-x-auto scroll-smooth">
-        {props.listContent.map((item, index) => (
-          <HomeContentCard key={index} contentItem={item} />
-        ))}
-      </div>
+    <div onScroll={onScrollHandler} className="flex pb-14 p-5 overflow-x-auto scroll-smooth">
+      {props.listContent.map((item, index) => (
+        <HomeContentCard key={index} contentItem={item} />
+      ))}
       <div
-        ref={fadingEleRef}
-        className={`${!fade ? "opacity-100" : "opacity-0"} should_fade`}
+        ref={fadingElRef}
+        className={`${!fade ? "opacity-100" : "opacity-0"} absolute right-0 top-0 w-[60px] h-full pointer-events-none`}
         style={{ transition: "linear 0.3s" }}
-      ></div>
+      >
+        <Blur />
+      </div>
     </div>
   );
 };

@@ -5,11 +5,10 @@ import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
-import { Movie, PopularResult, TV_Show } from "../types";
+import { PopularResult } from "../types";
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
-  const [listContent, setListContent] = useState<TV_Show[] | Movie[]>();
 
   const onSectionToggleHandler = (sectionName: string, selectedOption: string) => {
     setSectionToggle((prevState) => ({ ...prevState, [sectionName]: selectedOption }));

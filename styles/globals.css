@@ -30,7 +30,7 @@ html {
   background-color: rgb(219, 219, 219);
 }
 
-.should_fade::after {
+/* .should_fade::after {
   content: "";
   width: 60px;
   height: 100%;
@@ -40,4 +40,4 @@ html {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 100%);
   will-change: opacity;
   pointer-events: none;
-}
+} */
