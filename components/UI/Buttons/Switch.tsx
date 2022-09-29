@@ -50,7 +50,7 @@ const Switch: FC<SwitchProps> = (props) => {
           style={
             props.isToggled
               ? { left: `${Number(item1Width)}px`, width: `${Number(item2Width) + 2}px` }
-              : { left: 0, width: `${Number(item1Width) + 2}px` }
+              : { left: 0, width: `${Number(item1Width) + 1}px` }
           }
         ></div>
       </div>

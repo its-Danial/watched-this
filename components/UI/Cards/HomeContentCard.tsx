@@ -6,9 +6,10 @@ import { HiDotsCircleHorizontal } from "react-icons/hi";
 
 type HomeContentCardProps = {
   contentItem: Movie | TV_Show;
+  isLoading?: boolean;
 };
 
-const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem }) => {
+const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +31,11 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem }) => {
 
   return (
     <div ref={cardContainerRef} className="relative">
-      <div className={`flex flex-col gap-2 pl-5 ${showDropdown && "blur-sm"}`}>
+      <div
+        className={`flex flex-col gap-2 pl-5 transition-opacity ${showDropdown && "blur-sm"} ${
+          isLoading ? "opacity-10" : "opacity-100"
+        }`}
+      >
         <div className="relative hover:cursor-pointer">
           <img
             src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}

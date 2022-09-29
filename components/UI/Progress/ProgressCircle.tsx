@@ -53,7 +53,7 @@ const ProgressCircle: FC<ProgressCircleProps> = (props) => {
       <div className={`font-semibold absolute text-sm text-white ${props.percentage ? "left-[11px]" : ""}`}>
         {props.percentage ? (
           <>
-            {props.percentage} <span className="absolute text-[5px] -top-[5px]">%</span>
+            {Math.round(props.percentage)} <span className="absolute text-[5px] -top-[5px]">%</span>
           </>
         ) : (
           <>Na</>

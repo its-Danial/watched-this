@@ -1,6 +1,6 @@
 // Note: Popular content / Movie and TV show
 
-export interface PopularResult {
+export interface PopularAndTrendingResult {
   page: number;
   results: Movie[] | TV_Show[];
   total_pages: number;

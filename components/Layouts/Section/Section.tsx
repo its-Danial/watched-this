@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import Switch from "../../UI/Buttons/Switch";
+import SectionSelect from "../../UI/Inputs/SectionSelect";
 
 type SectionProps = {
   sectionTitle: string;
@@ -8,6 +8,7 @@ type SectionProps = {
   onToggleSelect: (pickedOptionTitle: string) => void;
   children: React.ReactNode;
   isToggled: boolean;
+  onTimeWindowSelect?: (timeWindow: string) => void;
 };
 
 const Section: FC<SectionProps> = (props) => {
@@ -16,7 +17,9 @@ const Section: FC<SectionProps> = (props) => {
       <div className="flex items-center gap-5 px-10">
         <h2 className="text-gray-700 font-semibold text-2xl">{props.sectionTitle}</h2>
         <Switch {...props} />
-        {/* <DropDownMenu /> */}
+        {props.sectionTitle === "Trending" && props.onTimeWindowSelect && (
+          <SectionSelect onTimeWindowSelect={props.onTimeWindowSelect} />
+        )}
       </div>
       {props.children}
     </section>

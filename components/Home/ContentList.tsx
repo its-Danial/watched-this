@@ -5,6 +5,7 @@ import HomeContentCard from "../UI/Cards/HomeContentCard";
 
 type ContentListProps = {
   listContent: TV_Show[] | Movie[];
+  isLoading?: boolean;
 };
 
 const ContentList: FC<ContentListProps> = (props) => {
@@ -25,7 +26,7 @@ const ContentList: FC<ContentListProps> = (props) => {
   return (
     <div onScroll={onScrollHandler} className="flex p-5 overflow-x-auto scroll-smooth">
       {props.listContent.map((item, index) => (
-        <HomeContentCard key={index} contentItem={item} />
+        <HomeContentCard isLoading={props.isLoading} key={index} contentItem={item} />
       ))}
       <div
         ref={fadingElRef}

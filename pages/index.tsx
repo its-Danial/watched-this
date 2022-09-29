@@ -1,18 +1,38 @@
 import axios from "axios";
 import { InferGetServerSidePropsType, NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
-import { PopularResult } from "../types";
+import { PopularAndTrendingResult } from "../types";
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
+  const [trendingContent, setTrendingContent] = useState(props.trendingContent);
+  const [trendingTimeWindow, setTrendingTimeWindow] = useState("all");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSectionToggleHandler = (sectionName: string, selectedOption: string) => {
     setSectionToggle((prevState) => ({ ...prevState, [sectionName]: selectedOption }));
   };
+
+  const trendingTimeSelectHandler = (timeWindow: string) => {
+    setTrendingTimeWindow(timeWindow);
+  };
+  useEffect(() => {
+    console.log(`/api/trending/${trendingTimeWindow}/${sectionToggle.trending === "Today" ? "day" : "week"}`);
+
+    const fetchFreshTrendingContent = async () => {
+      setIsLoading(true);
+      const { data: trendingData }: { data: PopularAndTrendingResult } = await axios.get(
+        `/api/trending/${trendingTimeWindow}/${sectionToggle.trending === "Today" ? "day" : "week"}`
+      );
+      setTrendingContent(trendingData);
+      setIsLoading(false);
+    };
+    fetchFreshTrendingContent();
+  }, [sectionToggle.trending, trendingTimeWindow]);
 
   return (
     <main className="mt-16 bg-white min-h-screen">
@@ -36,16 +56,11 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
         <Section
           sectionTitle="Trending"
           optionItems={["Today", "This Week"]}
+          onTimeWindowSelect={trendingTimeSelectHandler}
           onToggleSelect={onSectionToggleHandler.bind(null, "trending")}
           isToggled={sectionToggle.trending === "Today" ? false : true}
         >
-          <ContentList
-            listContent={
-              sectionToggle.popular === "Today"
-                ? props.popularContent.popularTvShows.results
-                : props.popularContent.popularMovies.results
-            }
-          />
+          <ContentList isLoading={isLoading} listContent={trendingContent.results} />
         </Section>
       </MainContainer>
     </main>
@@ -54,38 +69,23 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
 export default Home;
 
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { data: popularTvShows }: { data: PopularResult } = await axios.get(
+  const { data: popularTvShows }: { data: PopularAndTrendingResult } = await axios.get(
     `${process.env.PUBLIC_BASE_URL}/api/tv/popular`
   );
-  const { data: popularMovies }: { data: PopularResult } = await axios.get(
+  const { data: popularMovies }: { data: PopularAndTrendingResult } = await axios.get(
     `${process.env.PUBLIC_BASE_URL}/api/movie/popular`
+  );
+  const { data: allTrendingToday }: { data: PopularAndTrendingResult } = await axios.get(
+    `${process.env.PUBLIC_BASE_URL}/api/trending/all/day`
   );
 
   return {
     props: {
       popularContent: { popularTvShows, popularMovies },
+      trendingContent: allTrendingToday,
     },
   };
 };
-
-// export const getStaticProps: GetStaticProps<{
-//   popularContent: { popularTvShows: PopularResult; popularMovies: PopularResult };
-// }> = async (ctx) => {
-//   const { data: popularTvShows }: { data: PopularResult } = await axios.get(
-//     `${process.env.PUBLIC_BASE_URL}/api/tv/popular`
-//   );
-//   const { data: popularMovies }: { data: PopularResult } = await axios.get(
-//     `${process.env.PUBLIC_BASE_URL}/api/movie/popular`
-//   );
-
-//   return {
-//     props: {
-//       popularContent: { popularTvShows, popularMovies },
-//     },
-//   };
-// };
