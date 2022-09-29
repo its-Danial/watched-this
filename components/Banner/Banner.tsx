@@ -10,7 +10,7 @@ const Banner: FC<BannerProps> = (props) => {
         <div className="">
           <h2 className="text-gray-50 font-extrabold text-5xl">Welcome.</h2>
           <h3 className="text-gray-100 font-semibold text-3xl leading-1">
-            Millions of movies, TV shows and people to discover. Explore now.
+            Millions of movies and TV shows to discover. Explore now.
           </h3>
         </div>
         <SearchBar />

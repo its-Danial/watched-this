@@ -23,7 +23,7 @@ const ContentList: FC<ContentListProps> = (props) => {
   };
 
   return (
-    <div onScroll={onScrollHandler} className="flex pb-14 p-5 overflow-x-auto scroll-smooth">
+    <div onScroll={onScrollHandler} className="flex p-5 overflow-x-auto scroll-smooth">
       {props.listContent.map((item, index) => (
         <HomeContentCard key={index} contentItem={item} />
       ))}
