@@ -1,5 +1,5 @@
 import axios from "axios";
-import { InferGetServerSidePropsType, NextPage } from "next";
+import { InferGetServerSidePropsType, NextPage, GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
@@ -11,7 +11,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
   const [trendingContent, setTrendingContent] = useState(props.trendingContent);
   const [trendingTimeWindow, setTrendingTimeWindow] = useState("all");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>();
 
   const onSectionToggleHandler = (sectionName: string, selectedOption: string) => {
     setSectionToggle((prevState) => ({ ...prevState, [sectionName]: selectedOption }));
@@ -68,8 +68,6 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 };
 
 export default Home;
-
-import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { data: popularTvShows }: { data: PopularAndTrendingResult } = await axios.get(

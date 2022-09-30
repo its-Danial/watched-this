@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import Switch from "../../UI/Buttons/Switch";
 import SectionSelect from "../../UI/Inputs/SectionSelect";
 
