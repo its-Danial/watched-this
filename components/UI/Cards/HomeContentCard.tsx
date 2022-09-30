@@ -3,6 +3,7 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import { Movie, TV_Show } from "../../../types";
 import ProgressCircle from "../Progress/ProgressCircle";
 import { HiDotsCircleHorizontal } from "react-icons/hi";
+import ContentCardMenu from "./ContentCardMenu";
 
 type HomeContentCardProps = {
   contentItem: Movie | TV_Show;
@@ -65,11 +66,7 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) =
         </div>
       </div>
       {/* Note: menu */}
-      <div
-        className={`${
-          showDropdown ? "block" : "hidden"
-        }  absolute pointer-events-auto top-10 -right-5 bg-white h-20 w-20 border border-gray-300 rounded-md shadow-md z-20`}
-      ></div>
+      {showDropdown && <ContentCardMenu />}
     </div>
   );
 };
