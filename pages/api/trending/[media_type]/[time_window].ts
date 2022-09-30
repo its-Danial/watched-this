@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   if (req.method === "GET") {
     if (media_type && time_window) {
-      if (["all", "tv", "movie"].includes(media_type as string) && ["day", "movie"].includes(time_window as string)) {
+      if (["all", "tv", "movie"].includes(media_type as string) && ["day", "week"].includes(time_window as string)) {
         try {
           const axiosResponse = await axiosClient.get(`/trending/${media_type}/${time_window}`);
           const data: PopularAndTrendingResult = await axiosResponse.data;
