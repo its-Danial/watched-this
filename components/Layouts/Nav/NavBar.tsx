@@ -2,7 +2,7 @@ import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { FC } from "react";
 import { IoMdLogIn } from "react-icons/io";
-import logo from "../../../public/images/logo-no-background.svg";
+import logo from "../../../public/images/logo.png";
 import Avatar from "../../UI/Buttons/Avatar";
 
 type NavBarProps = {};
@@ -17,7 +17,7 @@ const NavBar: FC<NavBarProps> = (props) => {
   ) : (
     <button className="flex items-center gap-3" onClick={() => signIn()}>
       <span className="font-medium text-[1em] text-white">Sign In</span>
-      <IoMdLogIn size={18} />
+      <IoMdLogIn size={18} className="text-tmdbLightGreen" />
     </button>
   );
 
