@@ -1,10 +1,9 @@
-import Image from "next/image";
-import React, { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
+import { HiDotsCircleHorizontal } from "react-icons/hi";
+import useOutSideClickHandler from "../../../hooks/useOutSideClickHandler";
 import { Movie, TV_Show } from "../../../types";
 import ProgressCircle from "../Progress/ProgressCircle";
-import { HiDotsCircleHorizontal } from "react-icons/hi";
 import ContentCardMenu from "./ContentCardMenu";
-import useOutSideClickHandler from "../../../hooks/useOutSideClickHandler";
 
 type HomeContentCardProps = {
   contentItem: Movie | TV_Show;
@@ -19,18 +18,6 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) =
     setShowDropdown(!showDropdown);
   };
   // Note: To close menu if clicked anywhere else
-  // useEffect(() => {
-  //   const handleClickOutside = (event: any) => {
-  //     if (cardContainerRef.current && !cardContainerRef.current.contains(event.target)) {
-  //       setShowDropdown(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", handleClickOutside, true);
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutside, true);
-  //   };
-  // }, []);
-
   useOutSideClickHandler(cardContainerRef, () => setShowDropdown(false));
 
   return (
@@ -43,7 +30,7 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) =
         <div className="relative hover:cursor-pointer">
           <img
             src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
-            alt=""
+            alt={contentItem.name || contentItem.title}
             // height={225}
             // width={150}
             className="shadow-sm rounded-lg w-[150px] h-[225px] shadow-sm"

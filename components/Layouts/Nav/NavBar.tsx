@@ -10,8 +10,6 @@ type NavBarProps = {};
 const NavBar: FC<NavBarProps> = (props) => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   const authButton = session ? (
     <Avatar {...session.user} />
   ) : (
