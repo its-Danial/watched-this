@@ -4,6 +4,7 @@ import { Movie, TV_Show } from "../../../types";
 import ProgressCircle from "../Progress/ProgressCircle";
 import { HiDotsCircleHorizontal } from "react-icons/hi";
 import ContentCardMenu from "./ContentCardMenu";
+import useOutSideClickHandler from "../../../hooks/useOutSideClickHandler";
 
 type HomeContentCardProps = {
   contentItem: Movie | TV_Show;
@@ -18,17 +19,19 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) =
     setShowDropdown(!showDropdown);
   };
   // Note: To close menu if clicked anywhere else
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (cardContainerRef.current && !cardContainerRef.current.contains(event.target)) {
-        setShowDropdown(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleClickOutside = (event: any) => {
+  //     if (cardContainerRef.current && !cardContainerRef.current.contains(event.target)) {
+  //       setShowDropdown(false);
+  //     }
+  //   };
+  //   document.addEventListener("click", handleClickOutside, true);
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside, true);
+  //   };
+  // }, []);
+
+  useOutSideClickHandler(cardContainerRef, () => setShowDropdown(false));
 
   return (
     <div ref={cardContainerRef} className="relative">
