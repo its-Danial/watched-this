@@ -1,5 +1,6 @@
 import axios from "axios";
 import { InferGetServerSidePropsType, NextPage, GetServerSideProps } from "next";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
@@ -35,35 +36,41 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   }, [sectionToggle.trending, trendingTimeWindow]);
 
   return (
-    <main className="mt-16 bg-white min-h-screen">
-      <MainContainer>
-        <Banner />
-        <Section
-          sectionTitle="What's Popular"
-          optionItems={["On TV", "Movies"]}
-          onToggleSelect={onSectionToggleHandler.bind(null, "popular")}
-          isToggled={sectionToggle.popular === "On TV" ? false : true}
-        >
-          <ContentList
-            listContent={
-              sectionToggle.popular === "On TV"
-                ? props.popularContent.popularTvShows.results
-                : props.popularContent.popularMovies.results
-            }
-          />
-        </Section>
-        {/* Note Trending Section */}
-        <Section
-          sectionTitle="Trending"
-          optionItems={["Today", "This Week"]}
-          onTimeWindowSelect={trendingTimeSelectHandler}
-          onToggleSelect={onSectionToggleHandler.bind(null, "trending")}
-          isToggled={sectionToggle.trending === "Today" ? false : true}
-        >
-          <ContentList isLoading={isLoading} listContent={trendingContent.results} />
-        </Section>
-      </MainContainer>
-    </main>
+    <>
+      <Head>
+        <title>Watched This</title>
+        <meta name="description" content="A website for tracking and searching tv shows or movies" />
+      </Head>
+      <main className="mt-16 bg-white min-h-screen">
+        <MainContainer>
+          <Banner />
+          <Section
+            sectionTitle="What's Popular"
+            optionItems={["On TV", "Movies"]}
+            onToggleSelect={onSectionToggleHandler.bind(null, "popular")}
+            isToggled={sectionToggle.popular === "On TV" ? false : true}
+          >
+            <ContentList
+              listContent={
+                sectionToggle.popular === "On TV"
+                  ? props.popularContent.popularTvShows.results
+                  : props.popularContent.popularMovies.results
+              }
+            />
+          </Section>
+          {/* Note Trending Section */}
+          <Section
+            sectionTitle="Trending"
+            optionItems={["Today", "This Week"]}
+            onTimeWindowSelect={trendingTimeSelectHandler}
+            onToggleSelect={onSectionToggleHandler.bind(null, "trending")}
+            isToggled={sectionToggle.trending === "Today" ? false : true}
+          >
+            <ContentList isLoading={isLoading} listContent={trendingContent.results} />
+          </Section>
+        </MainContainer>
+      </main>
+    </>
   );
 };
 
