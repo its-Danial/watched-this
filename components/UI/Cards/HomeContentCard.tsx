@@ -30,6 +30,7 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) =
         <div className="relative hover:cursor-pointer">
           <img
             src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
+            // @ts-ignore
             alt={contentItem.name || contentItem.title}
             // height={225}
             // width={150}
@@ -48,9 +49,11 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading }) =
 
         <div className="flex flex-col px-3 pt-5 w-[150px]">
           <h1 className="font-bold hover:cursor-pointer hover:text-tmdbLightBlue">
+            {/* @ts-ignore */}
             {contentItem.name || contentItem.title}
           </h1>
           <h3 className="font-normal text-sm leading-tight text-slate-500">
+            {/* @ts-ignore */}
             {contentItem.first_air_date || contentItem.release_date}
           </h3>
         </div>
