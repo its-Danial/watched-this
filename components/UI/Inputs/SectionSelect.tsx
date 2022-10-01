@@ -1,12 +1,12 @@
 import { ChangeEvent, FC, useState } from "react";
 
 type SectionSelectProps = {
-  onTimeWindowSelect: (timeWindow: string) => void;
+  onContentTypeSelect: (timeWindow: "tv" | "all" | "movie") => void;
 };
 
 const SectionSelect: FC<SectionSelectProps> = (props) => {
   const onSelectValueHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-    props.onTimeWindowSelect(event.target.value);
+    props.onContentTypeSelect(event.target.value as "tv" | "all" | "movie");
   };
 
   return (

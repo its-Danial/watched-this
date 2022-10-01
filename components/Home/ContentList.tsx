@@ -4,6 +4,7 @@ import Blur from "../UI/Blur/Blur";
 import HomeContentCard from "../UI/Cards/HomeContentCard";
 
 type ContentListProps = {
+  displayContentType: "tv" | "all" | "movie";
   listContent: TV_Show[] | Movie[];
   isLoading?: boolean;
 };
@@ -25,8 +26,13 @@ const ContentList: FC<ContentListProps> = (props) => {
 
   return (
     <div onScroll={onScrollHandler} className="flex p-5 overflow-x-auto scroll-smooth">
-      {props.listContent.map((item, index) => (
-        <HomeContentCard isLoading={props.isLoading} key={index} contentItem={item} />
+      {props.listContent.map((item) => (
+        <HomeContentCard
+          displayContentType={props.displayContentType === "all" ? item.media_type : props.displayContentType}
+          isLoading={props.isLoading}
+          key={item.id}
+          contentItem={item}
+        />
       ))}
       <div
         ref={fadingElRef}

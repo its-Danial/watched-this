@@ -11,29 +11,29 @@ import { PopularAndTrendingResult } from "../types";
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
   const [trendingContent, setTrendingContent] = useState(props.trendingContent);
-  const [trendingTimeWindow, setTrendingTimeWindow] = useState("all");
+  const [trendingContentType, setTrendingContentType] = useState<"tv" | "all" | "movie">("all");
   const [isLoading, setIsLoading] = useState<boolean>();
 
   const onSectionToggleHandler = (sectionName: string, selectedOption: string) => {
     setSectionToggle((prevState) => ({ ...prevState, [sectionName]: selectedOption }));
   };
 
-  const trendingTimeSelectHandler = (timeWindow: string) => {
-    setTrendingTimeWindow(timeWindow);
+  const trendingContentSelectHandler = (contentType: "tv" | "all" | "movie") => {
+    setTrendingContentType(contentType);
   };
   useEffect(() => {
-    console.log(`/api/trending/${trendingTimeWindow}/${sectionToggle.trending === "Today" ? "day" : "week"}`);
+    console.log(`/api/trending/${trendingContentType}/${sectionToggle.trending === "Today" ? "day" : "week"}`);
 
     const fetchFreshTrendingContent = async () => {
       setIsLoading(true);
       const { data: trendingData }: { data: PopularAndTrendingResult } = await axios.get(
-        `/api/trending/${trendingTimeWindow}/${sectionToggle.trending === "Today" ? "day" : "week"}`
+        `/api/trending/${trendingContentType}/${sectionToggle.trending === "Today" ? "day" : "week"}`
       );
       setTrendingContent(trendingData);
       setIsLoading(false);
     };
     fetchFreshTrendingContent();
-  }, [sectionToggle.trending, trendingTimeWindow]);
+  }, [sectionToggle.trending, trendingContentType]);
 
   return (
     <>
@@ -51,6 +51,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
             isToggled={sectionToggle.popular === "On TV" ? false : true}
           >
             <ContentList
+              displayContentType={sectionToggle.popular === "On TV" ? "tv" : "movie"}
               listContent={
                 sectionToggle.popular === "On TV"
                   ? props.popularContent.popularTvShows.results
@@ -62,11 +63,15 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           <Section
             sectionTitle="Trending"
             optionItems={["Today", "This Week"]}
-            onTimeWindowSelect={trendingTimeSelectHandler}
+            onContentTypeSelect={trendingContentSelectHandler}
             onToggleSelect={onSectionToggleHandler.bind(null, "trending")}
             isToggled={sectionToggle.trending === "Today" ? false : true}
           >
-            <ContentList isLoading={isLoading} listContent={trendingContent.results} />
+            <ContentList
+              displayContentType={trendingContentType}
+              isLoading={isLoading}
+              listContent={trendingContent.results}
+            />
           </Section>
         </MainContainer>
       </main>
