@@ -33,15 +33,15 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading, dis
           >
             <div className="relative hover:cursor-pointer">
               <img
-                src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
                 // @ts-ignore
                 alt={contentItem.name || contentItem.title}
                 // height={225}
                 // width={150}
                 className="shadow-sm rounded-lg w-[150px] h-[225px] shadow-sm"
               />
-              <div className="absolute left-2 -bottom-5 cursor-default">
-                <ProgressCircle percentage={contentItem.vote_average * 10} />
+              <div className="absolute left-2 -bottom-5 cursor-default h-[38px] w-[38px]">
+                <ProgressCircle size="sm" percentage={contentItem.vote_average * 10} />
               </div>
               <div onClick={onMenuClickHandler} className="absolute top-2 right-2 rounded-full hover:cursor-pointer">
                 <HiDotsCircleHorizontal

@@ -7,7 +7,6 @@ import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
 import { PopularAndTrendingResult } from "../types";
-
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
   const [trendingContent, setTrendingContent] = useState(props.trendingContent);
