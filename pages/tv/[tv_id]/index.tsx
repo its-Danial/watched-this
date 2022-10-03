@@ -1,6 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import DetailsHeader from "../../../components/Details/DetailsHeader";
-import { CastCredit, Keywords, TvShowDetails } from "../../../types/TvShowDetails";
+import { TvCastCredit, Keywords, TvShowDetails } from "../../../types/TvShowDetails";
 import axiosClient from "../../../utils/axiosClient";
 
 const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
@@ -18,7 +18,7 @@ export default TVDetailPage;
 
 export const getServerSideProps: GetServerSideProps<{
   details: TvShowDetails;
-  creditsCast: CastCredit;
+  creditsCast: TvCastCredit;
   keywords: Keywords;
 }> = async (ctx) => {
   const { tv_id } = ctx.query;
