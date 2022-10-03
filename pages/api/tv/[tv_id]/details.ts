@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { CastCredit, Keywords, TvShowDetails } from "../../../../types/TvShowDetails";
+import { TvCastCredit, Keywords, TvShowDetails } from "../../../../types/TvShowDetails";
 import axiosClient from "../../../../utils/axiosClient";
 
 type Data = {
   details: TvShowDetails;
-  creditsCast: CastCredit;
+  creditsCast: TvCastCredit;
   keywords: Keywords;
 };
 
