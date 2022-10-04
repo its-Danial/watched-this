@@ -21,11 +21,11 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
         <DetailsHeader details={details} />
         <MainContainer>
           <div className="flex mt-[30px]">
-            <div className="w-[calc(100vw-80px-268px)] max-w-[calc(1400px-80px-268px)] flex flex-wrap pr-[30px]">
+            <div className="w-[calc(100vw-80px-268px)] max-w-[calc(1400px-80px-268px)] flex flex-col pr-[30px]">
               <CreditCastSection creditsCast={creditsCast} title="Series Cast" />
             </div>
 
-            <div className="min-w-[260px] w-[260px] flex flex-wrap">
+            <div className="w-[260px] flex flex-col bg-red-700">
               <h1>facts</h1>
             </div>
           </div>

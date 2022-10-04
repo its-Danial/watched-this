@@ -1,10 +1,11 @@
 import { FC, useRef, useState } from "react";
+import { MovieCreditCast } from "../../../types/MovieDetails";
 import { TvCastCredit } from "../../../types/TvShowDetails";
 import Blur from "../../UI/Blur/Blur";
 
 type CreditCastSectionProps = {
   title: string;
-  creditsCast: TvCastCredit;
+  creditsCast: TvCastCredit | MovieCreditCast;
 };
 
 const CreditCastSection: FC<CreditCastSectionProps> = ({ creditsCast, title }) => {
@@ -25,10 +26,7 @@ const CreditCastSection: FC<CreditCastSectionProps> = ({ creditsCast, title }) =
   return (
     <section className="relative">
       <h2 className="text-gray-700 font-semibold text-[1.4em] mb-[10px]">{title}</h2>
-      <ol
-        onScroll={onScrollHandler}
-        className="ml-[-10px]  pb-[10px] pr-[30px] w-[calc(100vw-80px-268px)] max-w-[calc(1400px-80px-268px)] overflow-x-scroll flex list-none list-inside"
-      >
+      <ol onScroll={onScrollHandler} className="ml-[-10px] pb-[10px] overflow-x-scroll flex list-none list-inside">
         {creditsCast.cast.map((cast) => (
           <li
             key={cast.id}
@@ -36,7 +34,13 @@ const CreditCastSection: FC<CreditCastSectionProps> = ({ creditsCast, title }) =
           >
             <img
               className="min-w-[140px] w-[140px] h-[175px]"
-              src={`https://www.themoviedb.org/t/p/w276_and_h350_face${cast.profile_path}`}
+              src={
+                cast.profile_path === null
+                  ? cast.gender === 1
+                    ? "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-grey-d9222f16ec16a33ed5e2c9bbdca07a4c48db14008bbebbabced8f8ed1fa2ad59.svg"
+                    : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
+                  : `https://www.themoviedb.org/t/p/w276_and_h350_face${cast.profile_path}`
+              }
               alt="cast image"
             />
             <div className="pt-[10px] px-[10px] flex flex-col min-w-[138px] w-[138px]">
