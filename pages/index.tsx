@@ -7,6 +7,8 @@ import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
 import { PopularAndTrendingResult } from "../types";
+import axiosClient from "../utils/axiosClient";
+
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
   const [trendingContent, setTrendingContent] = useState(props.trendingContent);
@@ -20,6 +22,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   const trendingContentSelectHandler = (contentType: "tv" | "all" | "movie") => {
     setTrendingContentType(contentType);
   };
+
   useEffect(() => {
     console.log(`/api/trending/${trendingContentType}/${sectionToggle.trending === "Today" ? "day" : "week"}`);
 
@@ -81,15 +84,9 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { data: popularTvShows }: { data: PopularAndTrendingResult } = await axios.get(
-    `${process.env.PUBLIC_BASE_URL}/api/tv/popular`
-  );
-  const { data: popularMovies }: { data: PopularAndTrendingResult } = await axios.get(
-    `${process.env.PUBLIC_BASE_URL}/api/movie/popular`
-  );
-  const { data: allTrendingToday }: { data: PopularAndTrendingResult } = await axios.get(
-    `${process.env.PUBLIC_BASE_URL}/api/trending/all/day`
-  );
+  const { data: popularTvShows }: { data: PopularAndTrendingResult } = await axiosClient.get(`/tv/popular`);
+  const { data: popularMovies }: { data: PopularAndTrendingResult } = await axiosClient.get(`/movie/popular`);
+  const { data: allTrendingToday }: { data: PopularAndTrendingResult } = await axiosClient.get(`/trending/all/day`);
 
   return {
     props: {

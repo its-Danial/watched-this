@@ -28,9 +28,9 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (ctx) => {
   const { movie_id } = ctx.query;
 
-  const { data } = await axiosClient.get(`${process.env.PUBLIC_BASE_URL}/api/movie/${movie_id}/details`);
-
-  const { details, creditsCast, keywords } = data;
+  const { data: details } = await axiosClient.get(`/movie/${movie_id}`);
+  const { data: creditsCast } = await axiosClient.get(`/movie/${movie_id}/credits`);
+  const { data: keywords } = await axiosClient.get(`/movie/${movie_id}/keywords`);
   return {
     props: {
       details,
