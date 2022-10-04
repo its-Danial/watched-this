@@ -1,6 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import DetailsHeader from "../../../components/Details/DetailsHeader";
-import { TvCastCredit, Keywords, TvShowDetails } from "../../../types/TvShowDetails";
+import { Keywords, TvCastCredit, TvShowDetails } from "../../../types/TvShowDetails";
 import axiosClient from "../../../utils/axiosClient";
 
 const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
