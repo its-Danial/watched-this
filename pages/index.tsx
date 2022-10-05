@@ -6,7 +6,7 @@ import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
 import Section from "../components/Layouts/Section/Section";
-import { PopularAndTrendingResult } from "../types";
+import { PopularAndTrendingResult } from "../types/PopularAndTrendingResult";
 import axiosClient from "../utils/axiosClient";
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {

@@ -24,8 +24,8 @@ const CreditCastSection: FC<CreditCastSectionProps> = ({ creditsCast, title }) =
   };
 
   return (
-    <section className="relative">
-      <h2 className="text-gray-700 font-semibold text-[1.4em] mb-[10px]">{title}</h2>
+    <>
+      <h2 className="text-black font-semibold text-[1.4em] mb-[10px]">{title}</h2>
       <ol onScroll={onScrollHandler} className="ml-[-10px] pb-[10px] overflow-x-scroll flex list-none list-inside">
         {creditsCast.cast.map((cast) => (
           <li
@@ -59,7 +59,7 @@ const CreditCastSection: FC<CreditCastSectionProps> = ({ creditsCast, title }) =
           <Blur />
         </div>
       </ol>
-    </section>
+    </>
   );
 };
 export default CreditCastSection;

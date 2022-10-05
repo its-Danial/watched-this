@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FC, useRef, useState } from "react";
 import { HiDotsCircleHorizontal } from "react-icons/hi";
 import useOutSideClickHandler from "../../../hooks/useOutSideClickHandler";
-import { Movie, TV_Show } from "../../../types";
+import { Movie, TV_Show } from "../../../types/PopularAndTrendingResult";
 import ProgressCircle from "../Progress/ProgressCircle";
 import ContentCardMenu from "./ContentCardMenu";
 
@@ -32,14 +33,16 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading, dis
             }`}
           >
             <div className="relative hover:cursor-pointer">
-              <img
+              <Image
                 src={`https://image.tmdb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
                 // @ts-ignore
                 alt={contentItem.name || contentItem.title}
-                // height={225}
-                // width={150}
-                className="shadow-sm rounded-lg w-[150px] h-[225px] shadow-sm"
+                height={225}
+                width={150}
+                layout="fixed"
+                className="rounded-lg"
               />
+
               <div className="absolute left-2 -bottom-5 cursor-default h-[38px] w-[38px]">
                 <ProgressCircle size="sm" percentage={contentItem.vote_average * 10} />
               </div>

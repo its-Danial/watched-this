@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PopularAndTrendingResult } from "../../../../types";
+import { PopularAndTrendingResult } from "../../../../types/PopularAndTrendingResult";
 import axiosClient from "../../../../utils/axiosClient";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<PopularAndTrendingResult | string>) {
