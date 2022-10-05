@@ -34,7 +34,7 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading, dis
           >
             <div className="relative hover:cursor-pointer">
               <Image
-                src={`https://image.tmdb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w440_and_h660_face${contentItem.poster_path}`}
                 // @ts-ignore
                 alt={contentItem.name || contentItem.title}
                 height={225}
