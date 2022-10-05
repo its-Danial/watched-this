@@ -38,10 +38,10 @@ const DetailsHeader: FC<DetailsHeaderProps> = ({ details, creditsCast }) => {
         <MainContainer>
           <div className="flex">
             <div className="w-[300px] h-[450px] min-w-[300px] overflow-hidden rounded-lg">
-              <img
-                // width={300}
-                // height={450}
-                // objectFit="cover"
+              <Image
+                width={300}
+                height={450}
+                priority={true}
                 src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${
                   details.poster_path ? details.poster_path : details.backdrop_path
                 }`}

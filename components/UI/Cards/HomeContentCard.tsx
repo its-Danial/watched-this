@@ -33,16 +33,17 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading, dis
             }`}
           >
             <div className="relative hover:cursor-pointer">
-              <Image
-                src={`https://image.tmdb.org/t/p/w440_and_h660_face${contentItem.poster_path}`}
-                // @ts-ignore
-                alt={contentItem.name || contentItem.title}
-                height={225}
-                width={150}
-                layout="fixed"
-                className="rounded-lg"
-              />
-
+              <div className="rounded-lg w-[150px] h-[225px] overflow-hidden shadow">
+                <Image
+                  src={`https://image.tmdb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
+                  // @ts-ignore
+                  alt={contentItem.name || contentItem.title}
+                  height={225}
+                  width={150}
+                  layout="fixed"
+                  className="rounded-lg"
+                />
+              </div>
               <div className="absolute left-2 -bottom-5 cursor-default h-[38px] w-[38px]">
                 <ProgressCircle size="sm" percentage={contentItem.vote_average * 10} />
               </div>
