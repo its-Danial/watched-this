@@ -33,7 +33,7 @@ const DetailsHeader: FC<DetailsHeaderProps> = ({ details, creditsCast }) => {
   };
 
   return (
-    <DetailsBanner backdropUrl={details.backdrop_path}>
+    <DetailsBanner backdropUrl={details.backdrop_path || details.poster_path}>
       <div className="py-[30px] px-[40px] w-full">
         <MainContainer>
           <div className="flex">

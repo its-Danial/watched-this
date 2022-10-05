@@ -37,7 +37,7 @@ const DetailsBanner: FC<DetailsBannerProps> = (props) => {
           {props.children}
         </div>
       </div>
-      {backdropColors && (
+      {/* {backdropColors && (
         <div className="w-full mt-12 flex justify-center gap-5">
           {backdropColors.map((color) => (
             <div
@@ -47,7 +47,7 @@ const DetailsBanner: FC<DetailsBannerProps> = (props) => {
             ></div>
           ))}
         </div>
-      )}
+      )} */}
     </>
   );
 };

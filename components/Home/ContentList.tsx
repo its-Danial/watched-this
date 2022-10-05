@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import { Movie, TV_Show } from "../../types";
+import { Movie, TV_Show } from "../../types/PopularAndTrendingResult";
 import Blur from "../UI/Blur/Blur";
 import HomeContentCard from "../UI/Cards/HomeContentCard";
 
