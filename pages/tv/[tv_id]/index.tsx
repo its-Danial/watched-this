@@ -2,11 +2,9 @@ import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next"
 import Head from "next/head";
 import Image from "next/image";
 import DetailsHeader from "../../../components/Details/DetailsHeader";
-
 import MainContainer from "../../../components/Layouts/Container/MainContainer";
 import CreditCastSection from "../../../components/Layouts/Section/CreditCastSection";
 import { Keywords, TvCastCredit, TvReviews, TvShowDetails } from "../../../types/TvShowDetails";
-
 import axiosClient from "../../../utils/axiosClient";
 
 const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
@@ -21,6 +19,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
         <title>{`${details.name} (${details.first_air_date.slice(0, 4)})`} </title>
         <meta name="description" content={details.overview} />
       </Head>
+
       <main className="mt-16 bg-white min-h-screen">
         <DetailsHeader details={details} />
         <MainContainer>

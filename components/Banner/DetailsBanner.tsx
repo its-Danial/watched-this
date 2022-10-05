@@ -10,19 +10,16 @@ type DetailsBannerProps = {
 const DetailsBanner: FC<DetailsBannerProps> = (props) => {
   const [backdropColors, setBackdropColors] = useState<string[]>();
 
+  const backgroundImage = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${props.backdropUrl}`;
+
   return (
     <>
-      <ColorExtractor
-        rgb
-        src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${props.backdropUrl}`}
-        getColors={(colors: string[]) => setBackdropColors(colors)}
-      />
+      <ColorExtractor rgb src={backgroundImage} getColors={(colors: string[]) => setBackdropColors(colors)} />
       <div
         className={`w-full h-[510px] bg-cover bg-no-repeat bg-detail-banner`}
         style={
           backdropColors && {
-            //   @ts-ignore
-            backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${props.backdropUrl})`,
+            backgroundImage: `url(${backgroundImage})`,
           }
         }
       >
