@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ContentList from "../components/Home/ContentList";
 import MainContainer from "../components/Layouts/Container/MainContainer";
-import Section from "../components/Layouts/Section/Section";
+import HomeSection from "../components/Layouts/Section/HomeSection";
 import { PopularAndTrendingResult } from "../types/PopularAndTrendingResult";
 import axiosClient from "../utils/axiosClient";
 
@@ -46,7 +46,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
       <main className="mt-16 bg-white min-h-screen">
         <MainContainer>
           <Banner />
-          <Section
+          <HomeSection
             sectionTitle="What's Popular"
             optionItems={["On TV", "Movies"]}
             onToggleSelect={onSectionToggleHandler.bind(null, "popular")}
@@ -60,9 +60,9 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
                   : props.popularContent.popularMovies.results
               }
             />
-          </Section>
+          </HomeSection>
           {/* Note Trending Section */}
-          <Section
+          <HomeSection
             sectionTitle="Trending"
             optionItems={["Today", "This Week"]}
             onContentTypeSelect={trendingContentSelectHandler}
@@ -74,7 +74,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
               isLoading={isLoading}
               listContent={trendingContent.results}
             />
-          </Section>
+          </HomeSection>
         </MainContainer>
       </main>
     </>
