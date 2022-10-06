@@ -43,7 +43,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
 
               <DetailsSocialSection reviews={reviews} tvShowName={details.name} />
 
-              <DetailsMediaSection videos={videos} />
+              <DetailsMediaSection videos={videos} images={images} />
             </div>
 
             <div className="w-[260px] flex flex-col bg-red-700">
