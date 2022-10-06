@@ -8,7 +8,7 @@ const axiosClient = axios.create({
   },
   params: {
     api_key: process.env.TMDB_API_KEY,
-    language: "en-US",
+    // language: "en-US",
   },
 });
 

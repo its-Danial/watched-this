@@ -125,7 +125,7 @@ export enum Department {
   Writing = "Writing",
 }
 
-export interface Keywords {
+export interface TvKeywords {
   id: number;
   results: Keyword[];
 }
@@ -138,12 +138,12 @@ export interface Keyword {
 export interface TvReviews {
   id: number;
   page: number;
-  results: Result[];
+  results: TvReviewsResult[];
   total_pages: number;
   total_results: number;
 }
 
-export interface Result {
+export interface TvReviewsResult {
   author: string;
   author_details: AuthorDetails;
   content: string;
@@ -158,4 +158,39 @@ export interface AuthorDetails {
   username: string;
   avatar_path: string;
   rating: number;
+}
+
+export interface TvDetailsVideo {
+  id: number;
+  results: TvDetailsVideoResult[];
+}
+
+export interface TvDetailsVideoResult {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+}
+
+export interface TvDetailsImages {
+  backdrops: Backdrop[];
+  id: number;
+  logos: Backdrop[];
+  posters: Backdrop[];
+}
+
+export interface Backdrop {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: null | string;
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
 }

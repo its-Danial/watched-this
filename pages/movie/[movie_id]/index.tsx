@@ -2,9 +2,9 @@ import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next"
 import Head from "next/head";
 import DetailsHeader from "../../../components/Details/DetailsHeader";
 import MainContainer from "../../../components/Layouts/Container/MainContainer";
-import CreditCastSection from "../../../components/Layouts/Section/CreditCastSection";
-import { MovieDetails } from "../../../types/MovieDetails";
-import { Keywords, TvCastCredit } from "../../../types/TvShowDetails";
+import CreditCastSection from "../../../components/Layouts/Section/DetailsCreditCastSection";
+import { MovieDetails, MovieKeywords, MovieCreditCast } from "../../../types/MovieDetails";
+
 import axiosClient from "../../../utils/axiosClient";
 
 const MovieDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
@@ -39,8 +39,8 @@ export default MovieDetailPage;
 
 export const getServerSideProps: GetServerSideProps<{
   details: MovieDetails;
-  creditsCast: TvCastCredit;
-  keywords: Keywords;
+  creditsCast: MovieCreditCast;
+  keywords: MovieKeywords;
 }> = async (ctx) => {
   const { movie_id } = ctx.query;
 
