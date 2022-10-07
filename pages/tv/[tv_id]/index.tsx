@@ -1,8 +1,10 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import { motion } from "framer-motion";
 import Head from "next/head";
 import DetailsHeader from "../../../components/Details/DetailsHeader";
 import MainContainer from "../../../components/Layouts/Container/MainContainer";
 import DetailsCreditCastSection from "../../../components/Layouts/Section/DetailsCreditCastSection";
+import DetailsFactSection from "../../../components/Layouts/Section/DetailsFactSection";
 import DetailsMediaSection from "../../../components/Layouts/Section/DetailsMediaSection";
 import DetailsRecommendationSection from "../../../components/Layouts/Section/DetailsRecommendationSection";
 import DetailsSeason from "../../../components/Layouts/Section/DetailsSeason";
@@ -17,8 +19,6 @@ import {
   TvShowDetails,
 } from "../../../types/TvShowDetails";
 import axiosClient from "../../../utils/axiosClient";
-import Image from "next/image";
-import DetailsFactSection from "../../../components/Layouts/Section/DetailsFactSection";
 
 const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
   details,
@@ -30,7 +30,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
   recommendations,
 }) => {
   return (
-    <>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
         <title>{`${details.name} (${details.first_air_date.slice(0, 4)})`}</title>
         <meta name="description" content={details.overview} />
@@ -58,7 +58,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
           </div>
         </MainContainer>
       </main>
-    </>
+    </motion.div>
   );
 };
 export default TVDetailPage;

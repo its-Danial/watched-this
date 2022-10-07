@@ -9,7 +9,6 @@ type DetailsFactSectionProps = {
 const DetailsFactSection: FC<DetailsFactSectionProps> = ({ keywords, details }) => {
   return (
     <>
-      {" "}
       <section className="mb-[30px]">
         <h4 className="text-lg font-bold mb-[10px]">Facts</h4>
         <div className="mb-5">

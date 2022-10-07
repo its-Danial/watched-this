@@ -1,5 +1,5 @@
 import axios from "axios";
-import { InferGetServerSidePropsType, NextPage, GetServerSideProps } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
@@ -8,6 +8,7 @@ import MainContainer from "../components/Layouts/Container/MainContainer";
 import HomeSection from "../components/Layouts/Section/HomeSection";
 import { PopularAndTrendingResult } from "../types/PopularAndTrendingResult";
 import axiosClient from "../utils/axiosClient";
+import { motion } from "framer-motion";
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
@@ -38,7 +39,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   }, [sectionToggle.trending, trendingContentType]);
 
   return (
-    <>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Head>
         <title>Watched This</title>
         <meta name="description" content="A website for tracking and searching tv shows or movies" />
@@ -77,7 +78,7 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           </HomeSection>
         </MainContainer>
       </main>
-    </>
+    </motion.div>
   );
 };
 
