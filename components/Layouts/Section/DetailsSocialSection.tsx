@@ -13,7 +13,7 @@ const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, tvShowNa
       <div className="flex items-baseline">
         <h1 className="font-semibold text-[1.4em] mb-5 mr-[50px]">Social</h1>
         <span className="text-[1.1em] font-semibold mr-6 pb-[5px] border-b-4 border-black cursor-pointer hover:opacity-70">
-          Review 1
+          Review {reviews.results.length}
         </span>
         <span className="text-[1.1em] font-semibold pb-[5px] cursor-pointer hover:opacity-70">Discussion</span>
       </div>

@@ -7,7 +7,6 @@ import DetailsMediaSection from "../../../components/Layouts/Section/DetailsMedi
 import DetailsRecommendationSection from "../../../components/Layouts/Section/DetailsRecommendationSection";
 import DetailsSeason from "../../../components/Layouts/Section/DetailsSeason";
 import DetailsSocialSection from "../../../components/Layouts/Section/DetailsSocialSection";
-
 import {
   TvCastCredit,
   TvDetailsImages,
@@ -18,6 +17,8 @@ import {
   TvShowDetails,
 } from "../../../types/TvShowDetails";
 import axiosClient from "../../../utils/axiosClient";
+import Image from "next/image";
+import DetailsFactSection from "../../../components/Layouts/Section/DetailsFactSection";
 
 const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
   details,
@@ -31,7 +32,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
   return (
     <>
       <Head>
-        <title>{`${details.name} (${details.first_air_date.slice(0, 4)})`} </title>
+        <title>{`${details.name} (${details.first_air_date.slice(0, 4)})`}</title>
         <meta name="description" content={details.overview} />
       </Head>
 
@@ -39,7 +40,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
         <DetailsHeader details={details} />
         <MainContainer>
           <div className="flex mt-[30px]">
-            <div className="w-[calc(100vw-80px-268px)] max-w-[calc(1400px-80px-268px)] pr-[30px] ">
+            <div className="w-[calc(100vw-80px-268px)] max-w-[calc(1400px-80px-268px)] pr-[30px]">
               <DetailsCreditCastSection creditsCast={creditsCast} title="Series Cast" />
 
               <DetailsSeason details={details} />
@@ -51,8 +52,8 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
               <DetailsRecommendationSection recommendations={recommendations} />
             </div>
 
-            <div className="w-[260px] flex flex-col bg-red-700">
-              <h1>facts</h1>
+            <div className="w-[260px] flex flex-col">
+              <DetailsFactSection keywords={keywords} details={details} />
             </div>
           </div>
         </MainContainer>
