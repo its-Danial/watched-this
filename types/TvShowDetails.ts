@@ -89,8 +89,6 @@ export interface SpokenLanguage {
   name: string;
 }
 
-// Note: Credit
-
 export interface TvCastCredit {
   cast: Cast[];
   crew: Cast[];
@@ -193,4 +191,45 @@ export interface Backdrop {
   vote_average: number;
   vote_count: number;
   width: number;
+}
+
+export interface TvRecommendations {
+  page: number;
+  results: TvRecommendationsResult[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface TvRecommendationsResult {
+  adult: boolean;
+  backdrop_path: string;
+  id: number;
+  name: string;
+  original_language: OriginalLanguage;
+  original_name: string;
+  overview: string;
+  poster_path: string;
+  media_type: MediaType;
+  genre_ids: number[];
+  popularity: number;
+  first_air_date: string;
+  vote_average: number;
+  vote_count: number;
+  origin_country: OriginCountry[];
+}
+
+export enum MediaType {
+  Tv = "tv",
+}
+
+export enum OriginCountry {
+  Au = "AU",
+  GB = "GB",
+  Jp = "JP",
+  Us = "US",
+}
+
+export enum OriginalLanguage {
+  En = "en",
+  Ja = "ja",
 }

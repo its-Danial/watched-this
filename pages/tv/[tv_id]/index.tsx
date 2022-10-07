@@ -4,6 +4,7 @@ import DetailsHeader from "../../../components/Details/DetailsHeader";
 import MainContainer from "../../../components/Layouts/Container/MainContainer";
 import DetailsCreditCastSection from "../../../components/Layouts/Section/DetailsCreditCastSection";
 import DetailsMediaSection from "../../../components/Layouts/Section/DetailsMediaSection";
+import DetailsRecommendationSection from "../../../components/Layouts/Section/DetailsRecommendationSection";
 import DetailsSeason from "../../../components/Layouts/Section/DetailsSeason";
 import DetailsSocialSection from "../../../components/Layouts/Section/DetailsSocialSection";
 
@@ -12,6 +13,7 @@ import {
   TvDetailsImages,
   TvDetailsVideo,
   TvKeywords,
+  TvRecommendations,
   TvReviews,
   TvShowDetails,
 } from "../../../types/TvShowDetails";
@@ -24,6 +26,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
   reviews,
   videos,
   images,
+  recommendations,
 }) => {
   return (
     <>
@@ -44,6 +47,8 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
               <DetailsSocialSection reviews={reviews} tvShowName={details.name} />
 
               <DetailsMediaSection videos={videos} images={images} />
+
+              <DetailsRecommendationSection recommendations={recommendations} />
             </div>
 
             <div className="w-[260px] flex flex-col bg-red-700">
@@ -64,6 +69,7 @@ export const getServerSideProps: GetServerSideProps<{
   reviews: TvReviews;
   videos: TvDetailsVideo;
   images: TvDetailsImages;
+  recommendations: TvRecommendations;
 }> = async (ctx) => {
   const { tv_id } = ctx.query;
 
@@ -73,6 +79,7 @@ export const getServerSideProps: GetServerSideProps<{
   const { data: reviews } = await axiosClient.get(`/tv/${tv_id}/reviews`);
   const { data: videos } = await axiosClient.get(`/tv/${tv_id}/videos`);
   const { data: images } = await axiosClient.get(`/tv/${tv_id}/images`);
+  const { data: recommendations } = await axiosClient.get(`/tv/${tv_id}/recommendations`);
 
   return {
     props: {
@@ -82,6 +89,7 @@ export const getServerSideProps: GetServerSideProps<{
       reviews,
       videos,
       images,
+      recommendations,
     },
   };
 };
