@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC, useRef, useState } from "react";
 import { MovieCreditCast } from "../../../types/MovieDetails";
 import { TvCastCredit } from "../../../types/TvShowDetails";
@@ -32,7 +33,9 @@ const CreditCastSection: FC<CreditCastSectionProps> = ({ creditsCast, title }) =
             key={cast.id}
             className="min-w-[140px] w-[140px] my-[10px] ml-[10px] mr-[4px] border border-gray-100 pb-[10px] rounded-lg overflow-hidden shadow"
           >
-            <img
+            <Image
+              width={140}
+              height={175}
               className="min-w-[140px] w-[140px] h-[175px]"
               src={
                 cast.profile_path === null
