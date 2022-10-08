@@ -49,7 +49,7 @@ const MovieDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSide
 
               <DetailsMediaSection videos={videos} images={images} />
 
-              <DetailsRecommendationSection recommendations={recommendations} />
+              <DetailsRecommendationSection title={details.title} recommendations={recommendations} />
             </div>
 
             <div className="w-[260px] flex flex-col">

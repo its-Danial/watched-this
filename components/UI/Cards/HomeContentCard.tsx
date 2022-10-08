@@ -34,15 +34,22 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading, dis
           <Link href={`${displayContentType}/${contentItem.id}`}>
             <a>
               <div className="rounded-lg w-[150px] h-[225px] overflow-hidden shadow">
-                <Image
-                  src={`https://image.tmdb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
-                  // @ts-ignore
-                  alt={contentItem.name || contentItem.title}
-                  height={225}
-                  width={150}
-                  layout="fixed"
-                  className="rounded-lg"
-                />
+                {contentItem.poster_path ? (
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w440_and_h660_face/${contentItem.poster_path}`}
+                    // @ts-ignore
+                    alt={contentItem.name || contentItem.title}
+                    height={225}
+                    width={150}
+                    layout="fixed"
+                    className="rounded-lg"
+                  />
+                ) : (
+                  <div
+                    className="bg-no-img-holder bg-[#dbdbdb] w-full h-full bg-center bg-no-repeat"
+                    style={{ backgroundSize: "50%" }}
+                  />
+                )}
               </div>
             </a>
           </Link>
@@ -51,7 +58,7 @@ const HomeContentCard: FC<HomeContentCardProps> = ({ contentItem, isLoading, dis
           </div>
           <div onClick={onMenuClickHandler} className="absolute top-2 right-2 rounded-full hover:cursor-pointer">
             <HiDotsCircleHorizontal
-              className="text-slate-200 hover:text-tmdbLightBlue opacity-70 hover:opacity-100"
+              className="text-slate-200 hover:text-tmdbLightBlue opacity-60 hover:opacity-100"
               size={23}
             />
           </div>

@@ -31,10 +31,8 @@ const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, title, c
               <div className="w-16 h-16 mr-5">
                 {contentType === "tv" ? (
                   reviews.results.at(0)?.author_details.avatar_path ? (
-                    <Image
-                      height={64}
-                      width={64}
-                      layout="fixed"
+                    <img
+                      loading="lazy"
                       src={`http://image.tmdb.org/t/p/w128_and_h128_face${
                         reviews.results.at(0)?.author_details.avatar_path
                       }`}
@@ -80,7 +78,7 @@ const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, title, c
           </div>
         </div>
       )}
-      <button className="mt-5 text-black text-base font-semibold hover:opacity-70">Full Cast & Crew</button>
+      <button className="mt-5 text-black text-base font-semibold hover:opacity-70">Read All Reviews</button>
     </section>
   );
 };

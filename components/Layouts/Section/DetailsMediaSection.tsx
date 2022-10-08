@@ -75,6 +75,7 @@ const DetailsMediaSection: FC<DetailsMediaSectionProps> = ({ videos, images }) =
         {toggled.videos &&
           videos.results.map((video) => (
             <li key={video.id}>
+              {/* @ts-ignore */}
               <ReactPlayer controls url={`'https://www.youtube.com/watch?v=${video.key}`} width={533} height={300} />
             </li>
           ))}
