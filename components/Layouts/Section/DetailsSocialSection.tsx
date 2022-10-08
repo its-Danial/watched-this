@@ -1,13 +1,15 @@
 import { FC } from "react";
 import Image from "next/image";
 import { TvReviews } from "../../../types/TvShowDetails";
+import { MovieDetailsReviews } from "../../../types/MovieDetails";
 
 type DetailsSocialSectionProps = {
-  reviews: TvReviews;
-  tvShowName: string;
+  reviews: TvReviews | MovieDetailsReviews;
+  title: string;
+  contentType: "movie" | "tv";
 };
 
-const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, tvShowName }) => {
+const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, title, contentType }) => {
   return (
     <section className="py-[30px] border-t border-gray-300">
       <div className="flex items-baseline">
@@ -18,7 +20,7 @@ const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, tvShowNa
         <span className="text-[1.1em] font-semibold pb-[5px] cursor-pointer hover:opacity-70">Discussion</span>
       </div>
       {reviews.results.length === 0 ? (
-        <p className="text-gray-600">We don&apos;t have any reviews for {tvShowName}</p>
+        <p className="text-gray-600">We don&apos;t have any reviews for {title}</p>
       ) : (
         <div className="w-full">
           <div
@@ -27,14 +29,26 @@ const DetailsSocialSection: FC<DetailsSocialSectionProps> = ({ reviews, tvShowNa
           >
             <div className="flex w-full items-center content-center">
               <div className="w-16 h-16 mr-5">
-                {reviews.results.at(0)?.author_details.avatar_path ? (
-                  <Image
-                    height={64}
-                    width={64}
-                    layout="fixed"
-                    src={`http://image.tmdb.org/t/p/w128_and_h128_face${
-                      reviews.results.at(0)?.author_details.avatar_path
-                    }`}
+                {contentType === "tv" ? (
+                  reviews.results.at(0)?.author_details.avatar_path ? (
+                    <Image
+                      height={64}
+                      width={64}
+                      layout="fixed"
+                      src={`http://image.tmdb.org/t/p/w128_and_h128_face${
+                        reviews.results.at(0)?.author_details.avatar_path
+                      }`}
+                      alt=""
+                      className="w-16 h-16 rounded-full"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-sky-500 flex justify-center items-center">
+                      <span className="font-bold text-3xl text-white">{reviews.results.at(0)?.author.slice(0, 1)}</span>
+                    </div>
+                  )
+                ) : reviews.results.at(0)?.author_details.avatar_path ? (
+                  <img
+                    src={`${reviews.results.at(0)?.author_details.avatar_path?.slice(1, -1)}`}
                     alt=""
                     className="w-16 h-16 rounded-full"
                   />

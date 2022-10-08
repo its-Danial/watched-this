@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import { TvShowDetails } from "../../../types/TvShowDetails";
+import { MovieDetails } from "../../../types/MovieDetails";
 
 type DetailsSeasonProps = {
   details: TvShowDetails;

@@ -45,7 +45,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
 
               <DetailsSeason details={details} />
 
-              <DetailsSocialSection reviews={reviews} tvShowName={details.name} />
+              <DetailsSocialSection contentType="tv" reviews={reviews} title={details.name} />
 
               <DetailsMediaSection videos={videos} images={images} />
 
@@ -53,7 +53,7 @@ const TVDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSidePro
             </div>
 
             <div className="w-[260px] flex flex-col">
-              <DetailsFactSection keywords={keywords} details={details} />
+              <DetailsFactSection contentType="tv" keywords={keywords} details={details} />
             </div>
           </div>
         </MainContainer>

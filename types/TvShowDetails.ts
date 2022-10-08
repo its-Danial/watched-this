@@ -177,13 +177,13 @@ export interface TvDetailsVideoResult {
 }
 
 export interface TvDetailsImages {
-  backdrops: Backdrop[];
+  backdrops: TvDetailsImage[];
   id: number;
-  logos: Backdrop[];
-  posters: Backdrop[];
+  logos: TvDetailsImage[];
+  posters: TvDetailsImage[];
 }
 
-export interface Backdrop {
+export interface TvDetailsImage {
   aspect_ratio: number;
   height: number;
   iso_639_1: null | string;

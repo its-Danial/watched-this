@@ -3,10 +3,11 @@ import Image from "next/image";
 import ReactPlayer from "react-player";
 import { TvDetailsImages, TvDetailsVideo } from "../../../types/TvShowDetails";
 import Blur from "../../UI/Blur/Blur";
+import { MovieDetailsImages, MovieDetailsVideos } from "../../../types/MovieDetails";
 
 type DetailsMediaSectionProps = {
-  videos: TvDetailsVideo;
-  images: TvDetailsImages;
+  videos: TvDetailsVideo | MovieDetailsVideos;
+  images: TvDetailsImages | MovieDetailsImages;
 };
 
 const DetailsMediaSection: FC<DetailsMediaSectionProps> = ({ videos, images }) => {
