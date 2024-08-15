@@ -1,10 +1,10 @@
-import { FC, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { FC, useRef, useState } from "react";
+import { BsCalendar3 } from "react-icons/bs";
+import { MovieDetailsRecommendations } from "../../../types/MovieDetails";
 import { TvRecommendations } from "../../../types/TvShowDetails";
 import Blur from "../../UI/Blur/Blur";
-import { BsCalendar3 } from "react-icons/bs";
-import Link from "next/link";
-import { MovieDetailsRecommendations } from "../../../types/MovieDetails";
 
 type DetailsRecommendationSectionProps = {
   recommendations: TvRecommendations | MovieDetailsRecommendations;
@@ -46,8 +46,10 @@ const DetailsRecommendationSection: FC<DetailsRecommendationSectionProps> = ({ r
                   <a>
                     <div className="h-[141px] w-[250px] rounded-lg overflow-hidden relative group">
                       {content.backdrop_path ? (
-                        <img
+                        <Image
                           loading="lazy"
+                          width={250}
+                          height={141}
                           src={`http://image.tmdb.org/t/p/w500_and_h282_face${content.backdrop_path}`}
                           // @ts-ignore
                           alt={content.name || content.title}
