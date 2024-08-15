@@ -1,4 +1,5 @@
 import axios from "axios";
+import { motion } from "framer-motion";
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -8,7 +9,6 @@ import MainContainer from "../components/Layouts/Container/MainContainer";
 import HomeSection from "../components/Layouts/Section/HomeSection";
 import { PopularAndTrendingResult } from "../types/PopularAndTrendingResult";
 import axiosClient from "../utils/axiosClient";
-import { motion } from "framer-motion";
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const [sectionToggle, setSectionToggle] = useState({ popular: "On TV", trending: "Today" });
@@ -25,8 +25,6 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   };
 
   useEffect(() => {
-    console.log(`/api/trending/${trendingContentType}/${sectionToggle.trending === "Today" ? "day" : "week"}`);
-
     const fetchFreshTrendingContent = async () => {
       setIsLoading(true);
       const { data: trendingData }: { data: PopularAndTrendingResult } = await axios.get(
